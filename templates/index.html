@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+  Homepage
+{% endblock title %}
+
+{% block css_code %}
+{% endblock css_code %}
+
+{% block content %}
+  
+  {% if user.is_authenticated %}
+
+    {% include 'task/tasks.html' %}
+
+  {% else %}
+
+  <div class="container">
+    <h1>Welcome to Task Manager</h1>
+    <p>A simple and efficient way to manage your tasks.</p>
+    <a href="{% url 'auth_system:login' %}" class="btn btn-primary btn-lg btn-get-started">Get Started</a>
+  </div>
+
+  {% endif %}
+
+{% endblock content %}

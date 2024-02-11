@@ -1,0 +1,9 @@
+# Ignore virtual environment
+virenv/
+# Ignore IDE files
+.idea/
+# Ignore variable files
+*.log
+# Ignore bytecodes
+*.class
+# Add more patterns as needed

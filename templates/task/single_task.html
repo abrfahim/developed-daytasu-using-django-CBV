@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Task Details
+{% endblock title %}
+
+{% block content %}
+    
+<div class="container task-details mb-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <h1 class="mt-4">{{ single_task.title }}</h1>
+            <p>Author: {{single_task.user}}</p>
+            <p class="lead">Due Date: {{ single_task.due_date|date:"F j, Y H:i" }}</p>
+            <p class="priority-label">Priority: {{ single_task.get_priority_display }}</p>
+            <hr>
+            <img class="img-fluid rounded" src="{{ single_task.image.url }}" alt="{{ single_task.title }}">
+            <hr>
+            <p>{{ single_task.description }}</p>
+            <p>Status: {% if single_task.is_completed %}Completed{% else %}Incomplete{% endif %}</p>
+            <p>Created At: {{ single_task.created_at|date:"F j, Y H:i" }}</p>
+            <p>Last Updated: {{ single_task.updated_at|date:"F j, Y H:i" }}</p>
+        </div>
+    </div>
+    
+    {% if request.user.pk == single_task.pk %}
+
+        <a href="{% url 'task:update_task' single_task.pk %}" class="btn btn-info btn-sm">Update</a>
+        <a href="{% url 'task:delete_task' single_task.pk %}" class="btn btn-danger btn-sm">Delete</a>
+
+    {% else %}
+        <h4>Thank You For Visit & Check Author Activity</h4>
+    {% endif %}
+
+</div>
+
+{% endblock %}
+
